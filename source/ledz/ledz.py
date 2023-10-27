@@ -28,3 +28,11 @@ class Ledz:
 
 	def show(self):
 		self._pixels.show()
+
+	@property
+	def columns(self):
+		return self._columns
+
+	@property
+	def rows(self):
+		return self._rows
