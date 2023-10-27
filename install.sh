@@ -2,16 +2,7 @@
 
 DEVICE="/media/elmarw/CIRCUITPY/"
 
-# echo "cleaning"
-# remotefiles=$(ls $DEVICE)
-# for file in $remotefiles; do
-#     if [ "$file" = "keyz" ]; then
-#         echo "found keyz install, removing"
-#         $(rm -rf $DEVICE/keyz)
-#     fi
-# done
-
-# echo "installing"
+echo "installing"
 cd source
 echo "transfering boot.py"
 $(cp boot.py $DEVICE)
@@ -26,4 +17,11 @@ localfiles=$(ls)
 for file in $localfiles; do
     echo "transfering lib/$file"
     $(cp $file $DEVICE/lib)
+done
+cd ../ledz
+$(mkdir -p $DEVICE/ledz)
+localfiles=$(ls)
+for file in $localfiles; do
+    echo "transfering ledz/$file"
+    $(cp $file $DEVICE/ledz)
 done
