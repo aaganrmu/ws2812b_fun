@@ -16,13 +16,10 @@ led.direction = digitalio.Direction.OUTPUT
 pin = board.GP0
 rows = 16
 columns = 16
-leds = Ledz(rows,columns,pin)
+leds = Ledz(rows,columns,pin,brightness=0.1)
 
 TIME_MIN = 60
 TIME_MAX = 120
-# TIME_MIN = 1
-# TIME_MAX = 1
-
 patterns = [Fire, Circles, Fireworks]
 time_switch = 0
 current_index = -1
