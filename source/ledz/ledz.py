@@ -1,4 +1,14 @@
+import math
 import neopixel
+from ledz.pos import Pos
+
+
+# modification of range() that's usefull for drawing pixels between points
+def path(start, stop):
+    if start < stop:
+        return range(start, stop + 1)
+    else:
+        return range(stop, start + 1)
 
 class Ledz:
     def __init__(self, rows, columns, pin, brightness=0.1):
@@ -8,6 +18,7 @@ class Ledz:
         self._pixels = neopixel.NeoPixel(pin, pixels, brightness=brightness, auto_write=False)
         self.calculate_led_matrix()
 
+    # Maps x and y into a led number. The leds are in a back and forth snake pattern
     def _led(self, x, y):
         if (y % 2 == 0):
             return y * self._columns + x
@@ -33,6 +44,16 @@ class Ledz:
     def fill(self, colour):
         self._pixels.fill(colour)
 
+    def rect(self, pos1, pos2, colour):
+        for x in path(pos1.x, pos2.x):
+            for y in path(pos1.y, pos2.y):
+                self.set(x, y, colour)
+
+
+    def bres_line_high(self, pos1, pos2, colour):
+        return
+
+
     def show(self):
         self._pixels.show()
 
@@ -43,3 +64,4 @@ class Ledz:
     @property
     def rows(self):
         return self._rows
+

@@ -36,7 +36,7 @@ def colourmap(i):
     return scaler(rainbow(i+base_colour_i),i)
 
 
-colour_lut = [colourmap(i) for i in range(255)]
+colour_lut = [colourmap(i) for i in range(256)]
 
 class Fire():
     def __init__(self, leds):
@@ -72,7 +72,7 @@ class Fire():
                 middle = self._matrix[x][y-1] * center_factor
                 right = self._matrix[x+1][y-1] * right_factor
                 original = self._matrix[x][y] * self_factor 
-                total = (int)(left+middle+right+original - random.randint(0,RANDOM_DAMPENING))
+                total = (left+middle+right+original - random.randint(0,RANDOM_DAMPENING))
                 if total < 0:
                     total = 0
                 self._matrix[x][y] = total
@@ -80,6 +80,6 @@ class Fire():
         # convert fire to led ligths
         for y in range(0, rows):
             for x in range(0, columns):
-                self._leds.set(x,y,colour_lut[self._matrix[x+1][y+1]])
+                self._leds.set(x,y,colour_lut[int(self._matrix[x+1][y+1])])
 
         self._leds.show()
