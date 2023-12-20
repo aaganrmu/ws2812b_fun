@@ -75,6 +75,8 @@ class Fire():
                 total = (left+middle+right+original - random.randint(0,RANDOM_DAMPENING))
                 if total < 0:
                     total = 0
+                if total >= 255:
+                    total = 255
                 self._matrix[x][y] = total
 
         # convert fire to led ligths
