@@ -22,7 +22,6 @@ rows = 16
 columns = 16
 leds = Ledz(rows,columns,pin,brightness=0.2)
 
-
 TIME_MIN = 60
 TIME_MAX = 60
 patterns = [Fire, Circles, Fireworks, Flow, Life]
@@ -33,12 +32,12 @@ current = patterns[0](leds)
 
 # Main loop
 while True:
-    # If there's more than one pattern switch every now and then
+    print(f"{time_switch < time.time() and len(patterns) > 1}")
     if time_switch < time.time() and len(patterns) > 1:
         time_switch = time.time() + random.randint(TIME_MIN, TIME_MAX)
         old_index = current_index
         while current_index == old_index :
             current_index = random.randint(0,len(patterns)-1)
-        pattern = patterns[current_index](leds)
-    # Show pattern
+        pattern = patterns[current_index]
+        current = pattern(leds)
     current.render()
