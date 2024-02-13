@@ -31,10 +31,10 @@ current_index = -1
 
 # Main loop
 while True:
-    if time_switch < time.time() and len(patterns) > 0:
+    if time_switch < time.time():
         time_switch = time.time() + random.randint(TIME_MIN, TIME_MAX)
         old_index = current_index
-        while current_index == old_index:
+        while current_index == old_index and len(patterns) > 1:
             current_index = random.randint(0,len(patterns)-1)
         pattern = patterns[current_index]
         current = pattern(leds)
