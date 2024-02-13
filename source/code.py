@@ -32,7 +32,6 @@ current = patterns[0](leds)
 
 # Main loop
 while True:
-    print(f"{time_switch < time.time() and len(patterns) > 1}")
     if time_switch < time.time() and len(patterns) > 1:
         time_switch = time.time() + random.randint(TIME_MIN, TIME_MAX)
         old_index = current_index
