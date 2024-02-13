@@ -7,6 +7,7 @@ from pattern.fire import Fire
 from pattern.circles import Circles
 from pattern.fireworks import Fireworks
 from pattern.flow import Flow
+from pattern.life import Life
 
 
 from pattern.lines import Lines
@@ -19,19 +20,18 @@ led.direction = digitalio.Direction.OUTPUT
 pin = board.GP0
 rows = 16
 columns = 16
-leds = Ledz(rows,columns,pin,brightness=0.3)
+leds = Ledz(rows,columns,pin,brightness=0.2)
 
 TIME_MIN = 60
 TIME_MAX = 60
-patterns = [Fire, Circles, Fireworks, Flow]
-patterns = [Flow]
-# patterns = [Lines]
+patterns = [Fire, Circles, Fireworks, Flow, Life]
+patterns = [Life]
 time_switch = 0
 current_index = -1
 
 # Main loop
 while True:
-    if time_switch < time.time():
+    if time_switch < time.time() and len(patterns) > 0:
         time_switch = time.time() + random.randint(TIME_MIN, TIME_MAX)
         old_index = current_index
         while current_index == old_index:

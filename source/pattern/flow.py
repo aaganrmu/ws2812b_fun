@@ -25,10 +25,8 @@ def scaler(colour, i):
     return tuple(int(chan*(i+1)/256)for chan in colour)
 
 base_colour_i  = random.randint(0,255)
-base_colour = rainbow(random.randint(0,255))
 def colourmap(i):
     colour = scaler(rainbow(i+base_colour_i),i)
-    print(colour) 
     return colour
 
 
